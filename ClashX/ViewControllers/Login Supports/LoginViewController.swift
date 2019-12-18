@@ -86,9 +86,10 @@ class LoginViewController: NSViewController {
                         self.view.window?.styleMask.insert(.closable)
                         return
                     }
-                    NSAlert.alert(with: "配置获取成功")
+                    AppDelegate.shared.updateConfig(configName: config.name, showNotification: true, completeHandler: nil)
                     config.updateTime = Date()
                     RemoteConfigManager.shared.saveConfigs()
+                    NSAlert.alert(with: "配置获取成功")
                     self.dismiss(nil)
                     self.view.window?.close()
                 })
